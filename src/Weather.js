@@ -25,6 +25,11 @@ export default function Weather(props) {
 
     setReady(true);
   }
+  function search() {
+    const apiKey = "bcd4cf1d3b0a0df2a96865d539474be5";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
   function handleSubmit(event) {
     event.preventDefault();
     search();
@@ -46,7 +51,7 @@ export default function Weather(props) {
             <input type="submit" value="search" className="search-btn w-20" />
           </form>
           <WeatherInfo data={weatherData} />
-
+          <WeatherForecast />
           <WeatherForecast coord={weatherData.coord} />
         </div>
       </div>
